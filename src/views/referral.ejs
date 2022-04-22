@@ -1,0 +1,183 @@
+<%- include('./common/header') %>
+<main>
+    <section class="breadcrumb-area pt-40 pb-40 bg_img" data-background="/images/bg/breadcrumb-bg-1.jpeg" data-overlay="dark" data-opacity="5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 text-center">
+                    <h2 class="page-title">TMAC Affiliate</h2>
+                    <div class="cafena-breadcrumb breadcrumbs">
+                        <ul class="list-unstyled d-flex align-items-center justify-content-center">
+                            <li class="cafenabcrumb-item duxinbcrumb-begin">
+                                <span class="bread_msg">10% Affiliate Rewards</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about__area about__area--2 position-relative pt-95 pb-115">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="about__left about__left--2 pr-15 pt-15 text-center">
+                        <div class="section-heading section-heading__black">
+                            <h2 class="title big_title mb-15">Best DeFi Affiliate Program</h2>
+                            <p class="ref_top1">Earn 10% referral income for all rewards earned by your referrals</p>
+                            <p class="ref_top2 mb-35">My Ref Link: <span class="ref_link">Connect Wallet</span></p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 col-sm-6 wow fadeInUp2" data-wow-delay=".2s">
+                                <div class="features_item box_stat stk_box ref_box">
+                                    <h4 class="mb-3">Farming Pools Reward</h4>
+                                    <div class="item_icon">
+                                        <img src="/images/icons/f-icon-4.png" alt="tmac_token">
+                                    </div>
+                                    <h2 class="item_title mb-2">My Referrals: <span class="farm_count">0</span></h2>
+                                    <h3 class="item_title mb-3">My Ref Income: <span class="farm_bal">0</span> BNB</h3>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="site-btn mt-10 farm_ref_btn">Withdraw</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 wow fadeInUp2" data-wow-delay=".2s">
+                                <div class="features_item box_stat stk_box ref_box">
+                                    <h4 class="mb-3">Staking Pools Reward</h4>
+                                    <div class="item_icon">
+                                        <img src="/images/icons/f-icon-4.png" alt="tmac_token">
+                                    </div>
+                                    <h2 class="item_title mb-2">My Referrals: <span class="ref_count">0</span></h2>
+                                    <h3 class="item_title mb-3">My Ref Income: <span class="stk_bal">0</span> BNB</h3>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="site-btn mt-10 stk_ref_btn">Withdraw</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-7 offset-xl-1 pt-45 d-flex justify-content-center">
+                    <div class="about__right about__right--2 position-relative">
+                        <img class="big" src="/images/about/about-2.png" alt="img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<%- include('./common/footer') %>
+<script type="text/javascript">
+    window.addEventListener('load', async () => {
+        init();
+        switchNetwork();
+        if (window.ethereum) {
+            let selectedAccount = null;
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                if (accounts == null || accounts.length == 0) {
+                console.log("NO ACCOUNT CONNECTED");
+                } else {
+                    if (selectedAccount != accounts[0]) {
+                        selectedAccount = accounts[0];
+                    }
+                    window.localStorage.setItem("userAddress", selectedAccount);
+                    document.querySelector("#prepare").style.display = "none";
+                    document.querySelector("#connectedAdd").style.display = "block";
+                    $('#connectWallet').html(getUserAddress(selectedAccount));
+                    $('.ref_link').html('https://tmac.finance/'+selectedAccount);
+                    $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+                }
+            } catch (error) {
+                console.error(error);
+            }
+            console.log(selectedAccount)
+            //getUser()
+            try { provider = web3.currentProvider;
+                if (typeof web3 !== 'undefined') {
+                    web3 = new Web3(web3.currentProvider);
+                } else {
+                    // set the provider you want from Web3.providers
+                    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+                }
+            } catch(e) { console.log("Could not get a wallet connection", e);
+            return;
+            }
+            await getData();
+            provider.on("accountsChanged", (accounts) => {console.log('Account changed');window.location.href = "";});
+            provider.on("chainChanged", (chainId) => {console.log('Chain changed');window.location.href = "";});
+            provider.on("networkChanged", (networkId) => {console.log('Network changed');window.location.href = "";});
+        }
+        document.querySelector("#btn-connect").addEventListener("click", onConnect);
+    });
+    function getUserAddress(userAddress) {
+        let firstFive = userAddress.substring(0, 5);
+        let lastFive = userAddress.substr(userAddress.length - 5);
+        return firstFive + '...' + lastFive;
+    }
+    async function onConnect() {
+        try {
+            provider = await web3Modal.connect();
+        }     catch(e) {
+            console.log("Could not get a wallet connection", e);
+            return;
+        }
+        await getData();
+    }
+    async function getData() {
+        const web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        selectedAccount = accounts[0];
+        console.log(selectedAccount)
+        if (selectedAccount == null || selectedAccount.length == 0) {
+            document.querySelector("#connectedAdd").style.display = "none";
+            document.querySelector("#prepare").style.display = "block";
+        }else{
+            if (selectedAccount != accounts[0]) {
+                selectedAccount = accounts[0];
+            }
+            document.querySelector("#prepare").style.display = "none";
+            document.querySelector("#connectedAdd").style.display = "block";
+            $('#connectWallet').html(getUserAddress(selectedAccount));
+            $('.ref_link').html('https://tmac.finance/ref/'+selectedAccount);
+            $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+            stakingContractInstance = new web3.eth.Contract(staking_ABI, staking_contract, {from: selectedAccount,})
+            farmingContractInstance = new web3.eth.Contract(farming_ABI, farming_contract, {from: selectedAccount,});
+            const stk_ref= await stakingContractInstance.methods.referrerCount(selectedAccount).call();
+            $('.ref_count').html(stk_ref)
+            const stk_bal= await stakingContractInstance.methods.referrerBalance(selectedAccount).call();
+            $('.stk_bal').html(stk_bal / 1e18)
+            const farm_ref= await farmingContractInstance.methods.referrerCount(selectedAccount).call();
+            $('.farm_count').html(farm_ref)
+            const farm_bal= await farmingContractInstance.methods.referrerBalance(selectedAccount).call();
+            $('.farm_bal').html(farm_bal / 1e18);
+            if(stk_bal<=0){$('.stk_ref_btn').attr('disabled', true)}
+            if(farm_bal<=0){$('.farm_ref_btn').attr('disabled', true)}
+        }
+    }
+    $('.stk_ref_btn').click(async function () {
+        var result = await stakingContractInstance.methods.refWithdraw().send({
+            from: selectedAccount,
+            to: staking_contract,
+            gasPrice: 10000000000,
+            gasLimit: 1000000, 
+        });
+        if (result.status) {
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+        }
+    });
+    $('.farm_ref_btn').click(async function () {
+        var result = await farmingContractInstance.methods.refWithdraw().send({
+            from: selectedAccount,
+            to: farming_contract,
+            gasPrice: 10000000000,
+            gasLimit: 1000000, 
+        });
+        if (result.status) {
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+        }
+    });
+</script>

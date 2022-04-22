@@ -1,0 +1,197 @@
+<%- include('./common/header') %>
+<main>
+<section class="bridge_top">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <h2 class="rp-title mt-90 text-center pb-0">Breeze Bridge</h2>
+                <h3 class="text-center mb-10 bridge_desc">Swap your TMAC (Breeze) tokens to BSC</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="contact__form mt-10">
+                    <div class="row form_sec">
+                        <div class="col-md-4 mt-30">
+                            <div class="form-group">
+                                <input type="number" name="amount" id="b_amount" placeholder="Enter Amount :">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-30">
+                            <div class="form-group">
+                                <input type="text" name="address" id="b_address" placeholder="Your Breeze Address :">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 mt-50 mb-130 text-center">
+                <button type="submit" class="site-btn swap_btn">SWAP</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wcu__area pb-120 pt-80 bridge_bot">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 text-center">
+                <div class="section-heading section-heading__black mb-60">
+                    <h2>Decentralization means BREEZE & TMAC</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-none-30">
+            <div class="col-md-6 mt-30 text-center">
+                <div class="wcu__item">
+                    <div class="icon"><img src="/images/icons/wcu-1.png" alt=""></div>
+                    <div class="content">
+                        <h2>Breeze Foundation</h2>
+                        <p>DAO based foundation to ensure decentralized blockchain services</p>
+                        <a href="https://breeze.foundation" class="site-btn mt-20" target="_blank">breeze.foundation</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-30 text-center">
+                <div class="wcu__item">
+                    <div class="icon"><img src="/images/icons/wcu-2.png" alt=""></div>
+                    <div class="content">
+                        <h2>TipMeACoffee</h2>
+                        <p>An open source decentralized social media platform</p>
+                        <a href="https://tipmeacoffee.com" class="site-btn mt-20" target="_blank">Tip Me A Coffee</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+<div class="modal fade" id="swap_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal_me_top" role="document">
+        <div class="modal-content modal-custom modal_me_custom">
+            <div class="modal-body thirty_pad">
+                <div class="transfer-respond">
+                    <h4 class="modal_me_title ab_font">Breeze to BSC</h4>
+                    <label class="six_hun">Balance: <span class="user_tok_bal">0</span> TMAC</label><br>
+                    <label class="six_hun">Swap: <span class="user_swap_amt">0</span> TMAC</label><br>
+                    <p>You will get <span class="pay_amt"></span> on BSC chain (1% chain fee)</p>
+                    <div class="row line mt-20">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-group mb-3"><input type="text" class="form-control"
+                                        name="b_key" id="b_key" placeholder="Enter Breeze Private Key">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text mb-deck modal_deck"><span class="breeze_user">breeze</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-3"><input type="text" class="form-control"
+                                        name="bsc_add" id="bsc_add" placeholder="Enter bsc address">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text mb-deck modal_deck">BSC</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <center><button type="submit" class="btn btn_primary swap_mod_btn"><span class="swap_btn_txt">SWAP</span></button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('./common/footer') %><script src="https://unpkg.com/breej/bin/breej.min.js"></script>
+<script type="text/javascript">
+    window.addEventListener('load', async () => {
+        init();
+        switchNetwork();
+        if (window.ethereum) {
+            let selectedAccount = null;
+            //selectedAccount = window.localStorage.getItem("userAddress"); 
+            console.log(selectedAccount)
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                //const accounts = await web3.eth.getAccounts();
+                if (accounts == null || accounts.length == 0) {
+                console.log("NO ACCOUNT CONNECTED");
+                } else {
+                    if (selectedAccount != accounts[0]) {
+                        selectedAccount = accounts[0];
+                    }
+                    window.localStorage.setItem("userAddress", selectedAccount);
+                    document.querySelector("#prepare").style.display = "none";
+                    document.querySelector("#connectedAdd").style.display = "block";
+                    $('#connectWallet').html(getUserAddress(selectedAccount));
+                    $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+                }
+            } catch (error) {
+                console.error(error);
+            }
+            console.log(selectedAccount)
+            //getUser()
+            try { provider = web3.currentProvider;
+                if (typeof web3 !== 'undefined') {
+                    web3 = new Web3(web3.currentProvider);
+                } else {
+                    // set the provider you want from Web3.providers
+                    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+                }
+            } catch(e) { console.log("Could not get a wallet connection", e);
+            return;
+            }
+            provider.on("accountsChanged", (accounts) => {console.log('Account changed');window.location.href = "";});
+            provider.on("chainChanged", (chainId) => {console.log('Chain changed');window.location.href = "";});
+            provider.on("networkChanged", (networkId) => {console.log('Network changed');window.location.href = "";});
+        }
+        document.querySelector("#btn-connect").addEventListener("click", onConnect);
+    });
+    function getUserAddress(userAddress) {
+        let firstFive = userAddress.substring(0, 5);
+        let lastFive = userAddress.substr(userAddress.length - 5);
+        return firstFive + '...' + lastFive;
+    }
+    async function onConnect() {
+        try {
+            provider = await web3Modal.connect();
+        }     catch(e) {
+            console.log("Could not get a wallet connection", e);
+            return;
+        }
+        await getData();
+    }
+    async function getData() {
+        const web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        selectedAccount = accounts[0];
+        console.log(selectedAccount)
+        if (selectedAccount == null || selectedAccount.length == 0) {
+            document.querySelector("#connectedAdd").style.display = "none";
+            document.querySelector("#prepare").style.display = "block";
+        }else{
+            if (selectedAccount != accounts[0]) {
+                selectedAccount = accounts[0];
+            }
+            document.querySelector("#prepare").style.display = "none";
+            document.querySelector("#connectedAdd").style.display = "block";
+            $('#connectWallet').html(getUserAddress(selectedAccount));
+            $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+        }
+    }
+$('.swap_btn').click(async function () { 
+    let b_amount=$('#b_amount').val();let b_address=$('#b_address').val();let chain_val=(0.99 * b_amount).toFixed(4); 
+    if(!b_amount || b_amount<1){ toastr.error('Not a valid amount'); return false; }else{$('.user_swap_amt').html(b_amount);}
+    if(!b_address){ toastr.error('Enter breeze username'); return false; }
+    breej.getAccount(b_address, (err, account) => {
+        if(err){console.log(err);toastr.error('Not a valid breeze account'); return false; }else{$('.breeze_user').html(b_address.toLowerCase());$('.pay_amt').html(chain_val);$('.user_tok_bal').html(account.balance/1000000);$("#swap_modal").appendTo("body").modal("show"); }
+    })
+});
+$('.swap_mod_btn').click(async function () {
+    let b_key=$('#b_key').val();let user_address=$('.breeze_user').html();let bsc_add=$('#bsc_add').val();let widr_amt=$('.pay_amt').html();
+    if(!b_key){ toastr.error('Enter Your private key'); return false; };
+    if(!bsc_add){ toastr.error('Enter BSC address'); return false; };
+    $('.swap_btn_txt').html('processing...');$('.swap_mod_btn').attr("disabled", true);
+    $.ajax({url: '/swap',type: 'POST',data: JSON.stringify({ user: user_address, wid_addr:bsc_add, amount:widr_amt, key:b_key}),contentType: 'application/json',
+        success: function(data)  {if (data.error == false) {$(".swap_modal").hide();toastr['success']("SWAP Initiated Successfully!");setTimeout(function(){window.location.reload();}, 100); } else {toastr['error'](data.message);$('.swap_btn_txt').html('SWAP');$('.swap_mod_btn').attr("disabled", false);return false;} }
+    });
+})
+</script>
