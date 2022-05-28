@@ -1820,8 +1820,18 @@ button.toast-close-button {
   padding: 7px 10px;
   font-size: 13px;
   font-weight: 600;
+  background: #E2DFDD;
+  color: #1b1b1b;
+}
+
+.btn.btn_primary.rel-input-btn:hover {
+  background-color: #bcbcbc;
 }
 
 .with-rel-blk input {
-  padding-right: 70px;
+  padding-right: 140px;
+}
+
+.rel-blk button:not(:last-child) {
+  margin-right: 8px;
 }
