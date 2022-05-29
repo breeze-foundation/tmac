@@ -1817,11 +1817,12 @@ button.toast-close-button {
 }
 
 .btn.btn_primary.rel-input-btn {
-  padding: 7px 10px;
-  font-size: 13px;
+  padding: 9px 12px;
+  font-size: 11px;
   font-weight: 600;
-  background: #E2DFDD;
-  color: #1b1b1b;
+  text-transform: uppercase;
+  /*background: #E2DFDD;
+  color: #1b1b1b;*/
 }
 
 .btn.btn_primary.rel-input-btn:hover {
