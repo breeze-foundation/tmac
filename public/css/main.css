@@ -9387,6 +9387,15 @@ html .ui-button.ui-state-disabled:active {
   min-height: 160px;
 }
 
+.sp-blk .contact__form {
+  margin-top: 20px;
+}
+
+.overlay-div .btn {
+  margin-top: -36px;
+  min-width: 237px;
+}
+
 @media (max-width: 1199px) {
   .contact-info {
     -ms-flex-wrap: wrap;
@@ -9426,6 +9435,10 @@ html .ui-button.ui-state-disabled:active {
     padding-bottom: 105px;
   }
 
+  .overlay-div .btn {
+    margin-top: -83px;
+    min-width: 184px;
+  }
 
 
 }
@@ -9456,6 +9469,16 @@ html .ui-button.ui-state-disabled:active {
   }
 
 
+  .overlay-div .btn {
+    margin-top: -60px;
+  }
+
+}
+
+@media screen and (max-width: 415px) {
+  .overlay-div .btn {
+    margin-top: -30px;
+  }
 }
 
 
