@@ -12,10 +12,11 @@
     let selectedAccount;
 
     const tmac_contract_address = '0x6421282c7f14670d738f4651311c5a1286e46484';
-    const staking_contract = '0xfa9a97d75b8ea3598b3b96f967f4af32580e0f5b';
+    //const staking_contract = '0xfa9a97d75b8ea3598b3b96f967f4af32580e0f5b';
+    const staking_contract = '0xa917c217ce51e8d95bd0472e0dbbf2d2a4960673';
     
     const lp_contract_address = '0xd26afE5e0c3E9f86279A9a8071FDDdD7a3C2E52C';
-    const farming_contract = '0xaf6fc1929814f3af4e1e26567c7e0415d69cf878';
+    //const farming_contract = '0xaf6fc1929814f3af4e1e26567c7e0415d69cf878';
     
     
     bscscanTxURL='https://bscscan.com/tx/';

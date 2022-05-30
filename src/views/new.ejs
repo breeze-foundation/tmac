@@ -1,5 +1,5 @@
 <%- include('./common/header') %>
-    <script>
+    <script>/*
         function updateLatestPrice() {
             fetch('https://api.coingecko.com/api/v3/coins/bitcoin').then((resp) => resp.json())
                 .then(function (result) {
@@ -11,12 +11,11 @@
                     document.getElementById("token_supply").innerHTML = supply;
                 })
         }
-        setInterval(updateLatestPrice, 3000)
+        setInterval(updateLatestPrice, 3000)*/
     </script>
     <main>
         <section id="banner_section" class="banner_section one" style="min-height: 92vh;">
-            <span class="shape shape__1 position-absolute"><img
-                    src="https://xpressrow.com/html/cafena/cafena/assets/images/hero/hero-img-2-1.png" alt=""></span>
+            <span class="shape shape__1 position-absolute"><img src="https://xpressrow.com/html/cafena/cafena/assets/images/hero/hero-img-2-1.png" alt=""></span>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -26,72 +25,62 @@
                                     <a href="#" class="btn btn_primary text-uppercase">Connect Wallet</a>
                                 </div>
                                 <div class="col-xl-12">
-                                    <p style="padding-bottom: 30px;"><span class="item--icon"
-                                            style="color:#be9a74;padding-right: 6px"> <i aria-hidden="true"
-                                                class="fas fa-coffee"></i> </span><span style="color:#1b1b1b">Stake TMAC
-                                            tokens to multiply. 20% of daily reward pool from breeze chain is dedicated
-                                            to staking rewards. Pool updates every 8 hours.</span></p>
+                                    <p style="padding-bottom: 30px;"><span class="item--icon" style="color:#be9a74;padding-right: 6px"> <i aria-hidden="true" class="fas fa-coffee"></i> </span><span style="color:#1b1b1b">Stake TMAC tokens to multiply. 20% of daily reward pool from breeze chain is dedicated to staking rewards. Pool updates every 8 hours.</span></p>
                                     <div style="display:flex;justify-content: center;">
-                                        <span
-                                            class="btn btn_border border_secondary text-uppercase scrollspy-btn stk_box_pol">Pool
-                                            Supply: 865 TMAC</span>
+                                        <span class="btn btn_border border_secondary text-uppercase scrollspy-btn stk_box_pol">Pool Supply: <span class="pol_supply" style="color:#be9a74 !important;font-weight: 600;">0</span> TMAC</span>
                                     </div>
                                     <div class="contact__form mt-2">
-                                        <form action="index.html" method="get">
-                                            <div class="row">
-                                                <div class="col-xl-6 mt-20">
-                                                    <div
-                                                        class="form-group border-up-label with-rel-blk position-relative">
-                                                        <label for="name" class="position-absolute">Stake</label>
-                                                        <input type="text" name="name" id="name"
-                                                            style="background: #fbf9ee;" value="0">
-                                                        <div class="rel-blk position-absolute">
-                                                            <button class="btn btn_primary rel-input-btn">stake</button>
-                                                            <button
-                                                                class="btn btn_primary rel-input-btn">unstake</button>
+                                        <div class="row">
+                                            <div class="col-xl-6 mt-20">
+                                                <div class="form-group border-up-label with-rel-blk position-relative">
+                                                    <label for="name" class="position-absolute">Stake</label>
+                                                    <input type="text" class="user_stk_staking" style="background: #fbf9ee;" value="0">
+                                                    <div class="rel-blk position-absolute">
+                                                        <button class="btn btn_primary rel-input-btn app_btn">Approve</button>
+                                                        <div class="stk_sec_token" style="display:none;">
+                                                            <button class="btn btn_primary rel-input-btn stk_btn" disabled>stake</button>
+                                                            <button class="btn btn_primary rel-input-btn unstk_btn" disabled>unstake</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-6 mt-20">
-                                                    <div
-                                                        class="form-group border-up-label with-rel-blk position-relative">
-                                                        <label for="name" class="position-absolute">Reward</label>
-                                                        <input type="email" name="email" id="email" placeholder=""
-                                                            style="background: #fbf9ee;" value="0">
-                                                        <div class="rel-blk position-absolute">
+                                            </div>
+                                            <div class="col-xl-6 mt-20">
+                                                <div
+                                                    class="form-group border-up-label with-rel-blk position-relative">
+                                                    <label for="name" class="position-absolute">Reward</label>
+                                                    <input type="text" class="user_earnings" style="background: #fbf9ee;" value="0">
+                                                    <div class="rel-blk position-absolute">
+                                                        <button class="btn btn_primary rel-input-btn" id="btnWithdraw2" disabled>CLAIM</button>
+                                                        <div class="wid_sec" style="display: none;">
                                                             <button class="btn btn_primary rel-input-btn">claim</button>
                                                             <button class="btn btn_primary rel-input-btn">exit</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row dash-block-wrap" style="background: #1b1b1b;padding: 20px;">
                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="contact-info d-flex align-items-center justify-content-center">
-                                        <div class="icon d-flex align-items-center justify-content-center"
-                                            style="border:none">
+                                        <div class="icon d-flex align-items-center justify-content-center" style="border:none">
                                             <img src="/images/icons/f-icon-1.png" alt="">
                                         </div>
                                         <div class="content">
-                                            <h3 class="title stk_main_val">
-                                                <%- price %>
-                                            </h3>
+                                            <h3 class="title stk_main_val">$<span class="tmac_price"><%- price %></span></h3>
                                             <p class="stk_main_in">Price</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="contact-info d-flex align-items-center justify-content-center">
-                                        <div class="icon d-flex align-items-center justify-content-center"
-                                            style="border:none">
+                                        <div class="icon d-flex align-items-center justify-content-center" style="border:none">
                                             <img src="/images/icons/f-icon-4.png" alt="">
                                         </div>
                                         <div class="content">
-                                            <h3 class="title stk_main_val">523596 TMAC</h3>
+                                            <h3 class="title stk_main_val"><span class="tot_staked">0</span> TMAC</h3>
                                             <p class="stk_main_in">Total Staked</p>
                                         </div>
                                     </div>
@@ -103,7 +92,7 @@
                                             <img src="/images/icons/f-icon-3.png" alt="">
                                         </div>
                                         <div class="content">
-                                            <h3 class="title stk_main_val">$2394671</h3>
+                                            <h3 class="title stk_main_val">$<span class="market_cap">0</span></h3>
                                             <p class="stk_main_in">Market Cap</p>
                                         </div>
                                     </div>
@@ -115,7 +104,7 @@
                                             <img src="/images/icons/f-icon-2.png" alt="">
                                         </div>
                                         <div class="content">
-                                            <h3 class="title stk_main_val">$39456</h3>
+                                            <h3 class="title stk_main_val">$<span class="tot_lock">0</span></h3>
                                             <p class="stk_main_in">Total Value Locked</p>
                                         </div>
                                     </div>
@@ -126,9 +115,6 @@
                 </div>
             </div>
         </section>
-
-
-
         <section id="banner_section" class="banner_section two" style="min-height: 92vh;">
             <div class="container">
                 <div class="row align-items-center flex-row-reverse justify-content-lg-between">
@@ -167,16 +153,12 @@
                     <div class="col-xl-8 pl-35">
                         <div class="best-coffe__wrapper">
                             <div class="section-heading section-heading__black">
-                                <h2 class="title mb-25 ind_bes">Brew your coffee on TipMeACoffee for free</h2>
+                                <h2 class="title mb-25 ind_bes">Brew your TMAC on TipMeACoffee for free</h2>
                                 <div style='font-family: "Jost", sans-serif;'>
-                                    <p>You can earn TMAC tokens on Tip Me A Coffee dApp for free. Just be a part of open
-                                        source social media, where you share-to-earn.</p>
-                                    <p>Every second of life counts, why waste it. Just tip to other community members
-                                        and earn rewards for yourself.</p>
+                                    <p>You can earn TMAC tokens on Tip Me A Coffee dApp for free. Just be a part of open source social media, where you share-to-earn.</p>
+                                    <p>Every second of life counts, why waste it. Just tip to other community members and earn rewards for yourself.</p>
                                 </div>
-                                <div class="d-flex justify-content-center"><a href="https://tipmeacoffee.com"
-                                        target="_blank"><button class="btn btn_primary text-uppercase mt-20">Tip Me A
-                                            Coffee</button></a></div>
+                                <div class="d-flex justify-content-center"><a href="https://tipmeacoffee.com"ctarget="_blank"><button class="btn btn_primary text-uppercase mt-20">Tip Me A Coffee</button></a></div>
                             </div>
                         </div>
                     </div>
@@ -184,90 +166,330 @@
             </div>
         </div>
     </main>
-    <%- include('./common/footer') %>
-        <script type="text/javascript">
-            window.addEventListener('load', async () => {
-                init();
-                switchNetwork();
-                if (window.ethereum) {
-                    let selectedAccount = null;
-                    //selectedAccount = window.localStorage.getItem("userAddress"); 
-                    console.log(selectedAccount)
-                    try {
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-                        //const accounts = await web3.eth.getAccounts();
-                        if (accounts == null || accounts.length == 0) {
-                            console.log("NO ACCOUNT CONNECTED");
-                        } else {
-                            if (selectedAccount != accounts[0]) {
-                                selectedAccount = accounts[0];
-                            }
-                            window.localStorage.setItem("userAddress", selectedAccount);
-                            document.querySelector("#prepare").style.display = "none";
-                            document.querySelector("#base_connect").style.display = "none";
-                            document.querySelector("#connectedAdd").style.display = "block";
-                            $('#connectWallet').html(getUserAddress(selectedAccount));
-                            $("#connectWallet").click(function () { window.open("https://bscscan.com/address/" + selectedAccount, '_blank') });
-                            //await getData();
-                        }
-                    } catch (error) {
-                        console.error(error);
-                    }
-
-                    try {
-                        provider = web3.currentProvider;
-                        if (typeof web3 !== 'undefined') {
-                            web3 = new Web3(web3.currentProvider);
-                        } else {
-                            // set the provider you want from Web3.providers
-                            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-                        }
-                    } catch (e) {
-                        console.log("Could not get a wallet connection", e);
-                        return;
-                    }
-                    provider.on("accountsChanged", (accounts) => { console.log('Account changed'); window.location.href = ""; });
-                    provider.on("chainChanged", (chainId) => { console.log('Chain changed'); window.location.href = ""; });
-                    provider.on("networkChanged", (networkId) => { console.log('Network changed'); window.location.href = ""; });
-                }
-                document.querySelector("#btn-connect").addEventListener("click", onConnect);
-            });
-            function getUserAddress(userAddress) {
-                let firstFive = userAddress.substring(0, 5);
-                let lastFive = userAddress.substr(userAddress.length - 5);
-                return firstFive + '...' + lastFive;
-            }
-            async function onConnect() {
-                try {
-                    provider = await web3Modal.connect();
-                } catch (e) {
-                    console.log("Could not get a wallet connection", e);
-                    return;
-                }
-                await getData();
-            }
-
-            async function getData() {
-                const web3 = new Web3(provider);
-                const accounts = await web3.eth.getAccounts();
-                selectedAccount = accounts[0];
-                console.log(selectedAccount)
-                if (selectedAccount == null || selectedAccount.length == 0) {
-                    console.log('no account')
-                    document.querySelector("#connectedAdd").style.display = "none";
-                    document.querySelector("#prepare").style.display = "block";
-                    document.querySelector("#base_connect").style.display = "block";
+<div class="modal fade" id="stake_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal_me_top" role="document">
+        <div class="modal-content modal-custom modal_me_custom">
+            <div class="modal-body thirty_pad">
+                <div class="transfer-respond">
+                    <h4 class="modal_me_title ab_font">STAKE TMAC Tokens</h4>
+                    <label class="six_hun"><span class="user_lp_bal">0</span> Available TMAC Tokens</label>
+                    <div class="row line mt-20">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-group mb-3"><input type="text" class="form-control" name="stk_amt" id="stk_amt" placeholder="Enter Amount to Stake">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text mb-deck modal_deck"> TMAC</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <center><button type="submit" class="btn btn_primary stk_mod_btn"><span class="stk_mod_txt">STAKE</span></button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="unstake_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal_me_top" role="document">
+        <div class="modal-content modal-custom modal_me_custom">
+            <div class="modal-body thirty_pad">
+                <div class="transfer-respond">
+                    <h4 class="modal_me_title ab_font">UNSTAKE TMAC Tokens</h4>
+                    <label class="six_hun"><span class="user_stk_bal">0</span> TMAC Staked</label>
+                    <div class="row line mt-20">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-group mb-3"><input type="text" class="form-control"
+                                        name="unstk_amt" id="unstk_amt" placeholder="Enter Amount to UNStake">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text mb-deck modal_deck"> TMAC</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <center><button type="submit" class="btn btn_primary unstk_mod_btn"><span class="unstk_mod_txt">UNSTAKE</span></button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('./common/footer') %>
+<script type="text/javascript">
+    window.addEventListener('load', async () => {
+        init();
+        if (window.ethereum) {
+            switchNetwork();
+            web3 = new Web3(window.ethereum);
+            await window.ethereum.enable();
+            let selectedAccount = null;
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                //const accounts = await web3.eth.getAccounts();
+                if (accounts == null || accounts.length == 0) {
+                console.log("NO ACCOUNT CONNECTED");
+                document.querySelector("#connectedAdd").style.display = "none";
+                document.querySelector("#prepare").style.display = "block";
+                document.querySelector("#base_connect").style.display = "block";
                 } else {
                     if (selectedAccount != accounts[0]) {
                         selectedAccount = accounts[0];
                     }
-                    console.log('this is check', selectedAccount)
+                    window.localStorage.setItem("userAddress", selectedAccount);
                     document.querySelector("#prepare").style.display = "none";
                     document.querySelector("#base_connect").style.display = "none";
                     document.querySelector("#connectedAdd").style.display = "block";
                     $('#connectWallet').html(getUserAddress(selectedAccount));
-                    $("#connectWallet").click(function () { window.open("https://bscscan.com/address/" + selectedAccount, '_blank') });
+                    $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+                }
+            } catch (error) {console.error(error);}
+
+            try { provider = web3.currentProvider;
+                if (typeof web3 !== 'undefined') {
+                    web3 = new Web3(web3.currentProvider);
+                } else {
+                    // set the provider you want from Web3.providers
+                    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+                }
+            } catch(e) { console.log("Could not get a wallet connection", e);
+            return;
+            }
+            //console.log(selectedAccount)
+            await getData()
+            provider.on("accountsChanged", (accounts) => {console.log('Account changed');window.location.href = "";});
+            provider.on("chainChanged", (chainId) => {console.log('Chain changed');window.location.href = "";});
+            provider.on("networkChanged", (networkId) => {console.log('Network changed');window.location.href = "";});
+        }
+        document.querySelector("#btn-connect").addEventListener("click", onConnect);
+    });
+
+    async function onConnect() {
+        try {
+            provider = await web3Modal.connect();
+        }     catch(e) {
+            console.log("Could not get a wallet connection", e);
+            return;
+        }
+        await getData();
+    }
+    async function getData() {
+        const web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        selectedAccount = accounts[0];
+        //console.log(selectedAccount)
+        if (selectedAccount == null || selectedAccount.length == 0) {
+            console.log('no account')
+            document.querySelector("#connectedAdd").style.display = "none";
+            document.querySelector("#prepare").style.display = "block";
+            document.querySelector("#base_connect").style.display = "block";
+        }else{
+            if (selectedAccount != accounts[0]) {
+                selectedAccount = accounts[0];
+            }
+            document.querySelector("#prepare").style.display = "none";
+            document.querySelector("#base_connect").style.display = "none";
+            document.querySelector("#connectedAdd").style.display = "block";
+            $('#connectWallet').html(getUserAddress(selectedAccount));
+            $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+
+            tokenContractInstance = new web3.eth.Contract(tmac_ABI, tmac_contract_address, {from: selectedAccount,
+            });
+            stakingContractInstance = new web3.eth.Contract(staking_ABI, staking_contract, {from: selectedAccount,
+            });
+            await updateData()
+        }
+
+    }
+    updateBlockVals();
+    async function updateBlockVals() {
+        var web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+        const stakeContract = new web3.eth.Contract(staking_ABI, staking_contract);
+        const tmacContract = new web3.eth.Contract(tmac_ABI, tmac_contract_address);
+        var maxSupply = await tmacContract.methods.totalSupply().call();
+        maxSupply = parseFloat(maxSupply / 1e6);
+        var totalSupply = await stakeContract.methods.totalSupply().call();
+        totalSupply = parseFloat(totalSupply / 1e6);$('.tot_staked').html(totalSupply);
+        var tmac_price=$('.tmac_price').html();
+        var locked_val=parseFloat(totalSupply*tmac_price).toFixed(2);$('.tot_lock').html(locked_val);
+        var marketCap=maxSupply*tmac_price;$('.market_cap').html(formatCash(marketCap));
+    }
+    async function updateData() {
+        setInterval(async () => {
+            if (selectedAccount != null){
+                //check allowance
+                var allowance=await tokenContractInstance.methods.allowance(selectedAccount, staking_contract).call();
+
+                //user available balance for staking
+                var user_lp_balance = await tokenContractInstance.methods.balanceOf(selectedAccount).call();
+                user_lp_balance = user_lp_balance / 1e6;
+                if (user_lp_balance > 0) {$('.user_lp_bal').html(user_lp_balance);}
+
+                var staked = await stakingContractInstance.methods.balanceOf(selectedAccount).call();
+                user_stake = parseFloat(staked / 1e6)
+                $('.user_stk_staking').val(user_stake); $('.user_stk_bal').html(user_stake);
+
+                //user reward
+                var reward = await stakingContractInstance.methods.earned(selectedAccount).call();
+                user_earn = parseFloat(reward / 1e6);
+
+                //console.log(user_earn)
+                if (user_earn > 0) {
+                    $('.user_earnings').val(user_earn);
+                    $('#btnWithdraw2').hide();
+                    $('.wid_sec').show();
+                    $('.wid_btn').prop('disabled', false);
+                    $('.ext_btn').prop('disabled', false);
+                } else {
+                    $('.user_earnings').val(user_earn);
+                    $('.wid_sec').hide();
+                    $('#btnWithdraw2').show();
                 }
 
+                //available pool reward
+                var polSupply = await stakingContractInstance.methods.polSupply().call();
+                polSupply = parseFloat(polSupply / 1e6);
+                $('.pol_supply').html(polSupply);
+
+                // start putting data in UI
+                if (allowance > 0) {
+                    
+                    $(".app_btn").css("display", "none").prop('disabled', true); 
+                    $(".stk_sec_token").show(); $(".stk_btn").prop('disabled', false); 
+                    $(".unstk_btn").prop('disabled', false); 
+                } else { 
+                    $(".app_btn").show().prop('disabled', false); 
+                    $(".stk_sec_token").hide(); $(".stk_btn").prop('disabled', true); 
+                    $(".unstk_btn").prop('disabled', true); 
+                    $("#stake_modal").modal("hide"); $("#unstake_modal").modal("hide"); 
+                }
+
+            }else{
+                console.log('Please connect to MetaMask.')
+                $(".app_btn").show().prop('disabled', false); 
+                $(".stk_sec_token").hide(); $(".stk_btn").prop('disabled', true); 
+                $(".unstk_btn").prop('disabled', true); 
+                $("#stake_modal").modal("hide"); $("#unstake_modal").modal("hide"); 
             }
-        </script>
+        }, 3000)
+    }
+
+    $('.app_btn').click(async function () {
+        //maxApproveLimit = await tokenContractInstance.methods.totalSupply().call();
+        $('.app_btn').html('Approving...');
+        maxApproveLimit='99999111111';
+        var result = await tokenContractInstance.methods.approve(staking_contract, maxApproveLimit).send({
+            from: selectedAccount,
+            to: staking_contract,
+            gasPrice: 10000000000,
+            gasLimit: 50000,
+            //value : 0,       
+        });
+
+        if (result.status) {
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+            $('.app_btn').hide();$('.stk_sec_token').show();
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+        }
+    });
+
+    $('.stk_btn').click(async function () { $("#stake_modal").appendTo("body").modal("show"); });
+    $('.stk_mod_btn').click(async function () {
+        let stk_amt = $('#stk_amt').val(); let lp_bal = $('.user_lp_bal').html(); let tok = "TRX";
+        if (!$.trim(stk_amt).length) { toastr.error('Not a valid amount'); return false; }
+        if (parseFloat(stk_amt) <= 0) { toastr.error('Not a valid amount'); return false; }
+        if (parseFloat(stk_amt) > parseFloat(lp_bal)) { toastr.error('Not enough token balance'); return false; }
+        $('.stk_mod_txt').html('Staking...'); $('.stk_mod_btn').attr("disabled", true);
+        let stk_amt_val = stk_amt * 1e6;
+        let referrer = await stakingContractInstance.methods.referrerInfo(selectedAccount).call();
+        let stakedAmt = await stakingContractInstance.methods.balanceOf(selectedAccount).call();
+        let refVal='<%-refVal%>';let dRef='0x0000000000000000000000000000000000000000';
+        if(referrer && referrer != dRef){refAddress=referrer}
+        else if(referrer && referrer==dRef && stakedAmt>0){refAddress=referrer}
+        else if(referrer && referrer==dRef && stakedAmt<=0){if(!refVal){refAddress=dRef}else{refAddress=refVal}}else{refAddress==dRef}
+        var result = await stakingContractInstance.methods.stake(refAddress, stk_amt_val).send({
+            from: selectedAccount,
+            to: staking_contract,
+            gasPrice: 10000000000,
+            gasLimit: 1000000,
+            //value : 0,       
+        });
+
+        if (result.status) {
+            $('.stk_mod_txt').html('Stake'); $('.stk_mod_btn').attr("disabled", false)
+            $("#stake_modal").modal("hide");
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+            //checkStaked();
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+        }
+    });
+
+    $('.unstk_btn').click(async function () { $("#unstake_modal").appendTo("body").modal("show"); });
+    $('.unstk_mod_btn').click(async function () {
+        let unstk_amt = $('#unstk_amt').val(); let user_stk_bal = $('.user_stk_bal').html(); 
+        if (!$.trim(unstk_amt).length) { toastr.error('Not a valid amount'); return false; }
+        if (parseFloat(unstk_amt) <= 0) { toastr.error('Not a valid amount'); return false; }
+        if (parseFloat(unstk_amt) > parseFloat(user_stk_bal)) { toastr.error('Not enough tokens staked'); return false; }
+        let unstk_amt_val = unstk_amt * 1e6;
+        $('.unstk_mod_btn').html('UNStaking...'); $('.unstk_mod_txt').attr("disabled", true);
+        var result = await stakingContractInstance.methods.withdraw(unstk_amt_val).send({
+            from: selectedAccount,
+            to: tmac_contract_address,
+            gasPrice: 10000000000,
+            gasLimit: 1000000,
+            //value : 0,       
+        });
+
+        if (result.status) {
+            $("#unstake_modal").modal("hide");
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+            $('.unstk_mod_btn').html('UNSTAKE'); $('.unstk_mod_txt').attr("disabled", false);
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+            $('.unstk_mod_btn').html('UNSTAKE'); $('.unstk_mod_txt').attr("disabled", false);
+        }
+    });
+
+    $('.wid_btn').click(async function () {
+        var result = await stakingContractInstance.methods.getReward().send({
+            from: selectedAccount,
+            to: tmac_contract_address,
+            gasPrice: 10000000000,
+            gasLimit: 1000000,
+            //value : 0,       
+        });
+
+        if (result.status) {
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+            $('#btnWithdraw2').show();$('.wid_sec').hide();
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+        }
+    });
+
+    $('.ext_btn').click(async function () {
+        var result = await stakingContractInstance.methods.exit().send({
+            from: selectedAccount,
+            to: staking_contract,
+            gasPrice: 10000000000,
+            gasLimit: 1000000,
+            //value : 0,       
+        });
+
+        if (result.status) {
+            toastr.success('Transaction Initiated. Check status on <a href="' + bscscanTxURL + result.transactionHash + '" target="_blank">BscScan</a>');
+            $('#btnWithdraw2').show();$('.wid_sec').hide();
+        } else {
+            toastr.error('Transaction Failed. Try Again.');
+        }
+    });
+    const formatCash = n => {
+      if (n < 1e3) return n;
+      if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+      if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+      if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(2) + "B";
+      if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
+    }; 
+</script>
