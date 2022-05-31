@@ -1,0 +1,194 @@
+<%- include('./common/header') %>
+<script>
+function updateLatestPrice() {
+  fetch('https://api.coingecko.com/api/v3/coins/bitcoin').then((resp) => resp.json())
+    .then(function(result) {
+    const latestPrice = result.market_data.current_price.usd;
+    const marketCap = result.market_data.market_cap.usd;
+    const supply = result.market_data.circulating_supply;
+    document.getElementById("token_price").innerHTML = latestPrice;
+    document.getElementById("token_cap").innerHTML = marketCap;
+    document.getElementById("token_supply").innerHTML = supply;
+  })
+}
+setInterval(updateLatestPrice, 3000)
+</script>
+<main>
+
+    <section id="banner_section" class="banner_section" style="min-height: 92vh;">
+      <div class="container">
+        <div class="row align-items-center flex-row-reverse justify-content-lg-between">
+          <div class="col-lg-5 col-md-6">
+            <div class="banner_image text-center wow fadeInUp2" data-wow-delay=".1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp2;">
+              <img src="/images/main_tac.png" alt="TMAC">
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-6">
+            <div class="banner_content">
+              <h1 class="text-uppercase wow fadeInUp2" data-wow-delay=".1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp2;"><strong>TMAC</strong> Yield Farming Made <span>Simple</span></h1>
+              <ul class="banner_btns ul_li wow fadeInUp2" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp2;">
+                <li><a class="btn btn_border border_secondary text-uppercase scrollspy-btn" href="https://pancakeswap.finance/swap?inputCurrency=0x6421282c7f14670d738f4651311c5a1286e46484&outputCurrency=0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c" target="_blank">Trade Now</a></li>
+                <li><a class="btn btn_primary text-uppercase" href="/faq">How It Works</a></li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feature_section" class="feature_section sec_ptb_100 pb-120">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 wow fadeInUp2" data-wow-delay=".2s">
+                <div class="features_item box_stat stk_box2 ref_box">
+                    <h4 class="mb-3">Price</h4>
+                    <div class="item_icon mb-0">
+                        <img src="/images/icons/f-icon-1.png" alt="tmac_token">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="index-btn mt-10" id="token_price">0</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 wow fadeInUp2" data-wow-delay=".2s">
+                <div class="features_item box_stat stk_box2 ref_box">
+                    <h4 class="mb-3">Circulating Supply</h4>
+                    <div class="item_icon mb-0">
+                        <img src="/images/icons/f-icon-2.png" alt="tmac_token">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="index-btn mt-10" id="token_supply">0</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 wow fadeInUp2" data-wow-delay=".2s">
+                <div class="features_item box_stat stk_box2 ref_box">
+                    <h4 class="mb-3">Locked Value</h4>
+                    <div class="item_icon mb-0">
+                        <img src="/images/icons/f-icon-3.png" alt="tmac_locked_value">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="index-btn mt-10" id="locked_val">0</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 wow fadeInUp2" data-wow-delay=".2s">
+                <div class="features_item box_stat stk_box2 ref_box">
+                    <h4 class="mb-3">Staking Pools Reward</h4>
+                    <div class="item_icon mb-0">
+                        <img src="/images/icons/f-icon-4.png" alt="tmac_market_cap">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="index-btn mt-10" id="token_cap">0</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <div class="best-coffe__area position-relative mb-90 mt-30">
+        <div class="best-coffe__bg">
+            <img src="/images/bg/best-coffe-1.jpeg" alt="tmac_token">
+        </div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-xl-8 pl-35">
+                    <div class="best-coffe__wrapper">
+                        <div class="section-heading section-heading__black">
+                            <h2 class="title mb-25 ind_bes">Brew your coffee on TipMeACoffee for free</h2>
+                            <div style='font-family: "Jost", sans-serif;'>
+                                <p>You can earn TMAC tokens on Tip Me A Coffee dApp for free. Just be a part of open source social media, where you share-to-earn.</p>
+                                <p>Every second of life counts, why waste it. Just tip to other community members and earn rewards for yourself.</p>
+                            </div>
+                            <div class="d-flex justify-content-center"><a href="https://tipmeacoffee.com" target="_blank"><button class="btn btn_primary text-uppercase mt-20">Tip Me A Coffee</button></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('./common/footer') %>
+<script type="text/javascript">
+window.addEventListener('load', async () => {
+    init();
+    switchNetwork();
+    if (window.ethereum) {
+        let selectedAccount = null;
+        //selectedAccount = window.localStorage.getItem("userAddress"); 
+        console.log(selectedAccount)
+        try {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+            //const accounts = await web3.eth.getAccounts();
+            if (accounts == null || accounts.length == 0) {
+            console.log("NO ACCOUNT CONNECTED");
+            } else {
+                if (selectedAccount != accounts[0]) {
+                    selectedAccount = accounts[0];
+                }
+                window.localStorage.setItem("userAddress", selectedAccount);
+                document.querySelector("#prepare").style.display = "none";
+                document.querySelector("#connectedAdd").style.display = "block";
+                $('#connectWallet').html(getUserAddress(selectedAccount));
+                $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+                //await getData();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+        try { provider = web3.currentProvider;
+            if (typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);
+            } else {
+                // set the provider you want from Web3.providers
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+        } catch(e) { console.log("Could not get a wallet connection", e);
+        return;
+        }
+        provider.on("accountsChanged", (accounts) => {console.log('Account changed');window.location.href = "";});
+        provider.on("chainChanged", (chainId) => {console.log('Chain changed');window.location.href = "";});
+        provider.on("networkChanged", (networkId) => {console.log('Network changed');window.location.href = "";});
+    }
+    document.querySelector("#btn-connect").addEventListener("click", onConnect);
+});
+function getUserAddress(userAddress) {
+    let firstFive = userAddress.substring(0, 5);
+    let lastFive = userAddress.substr(userAddress.length - 5);
+    return firstFive + '...' + lastFive;
+}
+async function onConnect() {
+    try {
+        provider = await web3Modal.connect();
+    }     catch(e) {
+        console.log("Could not get a wallet connection", e);
+        return;
+    }
+    await getData();
+}
+
+async function getData() {
+    const web3 = new Web3(provider);
+    const accounts = await web3.eth.getAccounts();
+    selectedAccount = accounts[0];
+    console.log(selectedAccount)
+    if (selectedAccount == null || selectedAccount.length == 0) {
+        console.log('no account')
+        document.querySelector("#connectedAdd").style.display = "none";
+        document.querySelector("#prepare").style.display = "block";
+    }else{
+        if (selectedAccount != accounts[0]) {
+            selectedAccount = accounts[0];
+        }
+        console.log('this is check', selectedAccount)
+        document.querySelector("#prepare").style.display = "none";
+        document.querySelector("#connectedAdd").style.display = "block";
+        $('#connectWallet').html(getUserAddress(selectedAccount));
+        $("#connectWallet").click(function(){ window.open("https://bscscan.com/address/" + selectedAccount, '_blank')});
+    }
+
+}
+</script>

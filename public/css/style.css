@@ -1836,3 +1836,6 @@ button.toast-close-button {
 .rel-blk button:not(:last-child) {
   margin-right: 8px;
 }
+.stk_nbox{padding-bottom: 30px;}.stk_cup{color:#be9a74;padding-right: 6px}.pol_supply{color:#be9a74 !important;font-weight: 600;}.dash-block-wrap{background: #1b1b1b;padding: 20px;}
+.banner_image, .text_main_sec{visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp2;}
+.banner_btns{visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp2;}

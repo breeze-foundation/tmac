@@ -7,10 +7,10 @@ const router = express.Router();
 
 
 router.use(cookieParser());
-router.get('', async (req, res) => {let priceAPI = await axios.get(`https://api.bogged.finance/v1/spot_prices?tokens=0x6421282c7f14670d738f4651311c5a1286e46484&chain=bsc&api_key=wkI2Pd5mbAWe8n3I3B6C`);let price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];res.render('index', { price: price })})
-router.get('/new', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};let priceAPI = await axios.get(`https://api.bogged.finance/v1/spot_prices?tokens=0x6421282c7f14670d738f4651311c5a1286e46484&chain=bsc&api_key=wkI2Pd5mbAWe8n3I3B6C`);let price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];res.render('new', { price: price })})
-router.get('/farming', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};res.render('farming',{refVal:refVal})})
-router.get('/staking', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};res.render('staking',{refVal:refVal})})
+//router.get('/new', async (req, res) => {let priceAPI = await axios.get(`https://api.bogged.finance/v1/spot_prices?tokens=0x6421282c7f14670d738f4651311c5a1286e46484&chain=bsc&api_key=wkI2Pd5mbAWe8n3I3B6C`);let price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];res.render('index', { price: price })})
+router.get('', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};let priceAPI = await axios.get(`https://api.bogged.finance/v1/spot_prices?tokens=0x6421282c7f14670d738f4651311c5a1286e46484&chain=bsc&api_key=wkI2Pd5mbAWe8n3I3B6C`);let price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];res.render('new', { price: price })})
+//router.get('/farming', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};res.render('farming',{refVal:refVal})})
+//router.get('/staking', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};res.render('staking',{refVal:refVal})})
 router.get('/faq', async (req, res) => {res.render('faq')})
 router.get('/bridge', async (req, res) => {res.render('bridge')})
 router.post('/swap', async (req, res) => {let post =req.body;const breej = require('breej');let sender=req.body.user;let amount = parseInt((req.body.amount) * 1000000);const Validator = require('wallet-validator');let valid = Validator.validate(req.body.wid_addr, 'ETH');
