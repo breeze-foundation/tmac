@@ -20,8 +20,9 @@ router.post('/swap', async (req, res) => {let post =req.body;const breej = requi
       	} else if (amount <  1000000) {res.send({ error: true, message: 'Min swap amount is 1 token' });  return false;
       	} else if (!valid) {res.send({ error: true, message: 'Not a valid BSC wallet address' });return false;
      	} else {
+            res.send({ error: true, message: 'Bridge is disabled' }); return false;
             let wAmount = parseInt(amount);
-            let newTx = { type: 23, data: { destaddr: req.body.wid_addr, network: 'BSC', amount: wAmount } };
+            let newTx = { type: 203, data: { destaddr: req.body.wid_addr, network: 'BSC', amount: wAmount } };
             let signedTx = breej.sign(post.key, sender, newTx);
             breej.sendTransaction(signedTx, (error, result) => { if (error === null) { res.send({ error: false }); } else { res.send({ error: true, message: error['error'] }); } })}
     })
