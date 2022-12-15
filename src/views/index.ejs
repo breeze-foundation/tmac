@@ -375,7 +375,7 @@
     $('.app_btn').click(async function () {
         //maxApproveLimit = await tokenContractInstance.methods.totalSupply().call();
         $('.app_btn').html('Approving...');
-        maxApproveLimit = '99999111111';
+        maxApproveLimit = '99999999999999999';
         var result = await tokenContractInstance.methods.approve(staking_contract, maxApproveLimit).send({
             from: selectedAccount,
             to: staking_contract,
