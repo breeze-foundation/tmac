@@ -4,16 +4,16 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios')
 const Validator = require('wallet-validator');
 const router = express.Router();
-
-
+require('dotenv').config()
 router.use(cookieParser());
+
 //router.get('/new', async (req, res) => {let priceAPI = await axios.get(`https://api.bogged.finance/v1/spot_prices?tokens=0x6421282c7f14670d738f4651311c5a1286e46484&chain=bsc&api_key=wkI2Pd5mbAWe8n3I3B6C`);let price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];res.render('index', { price: price })})
 router.get('', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};
-    //let priceAPI = await axios.get(`https://api.bogged.finance/v1/spot_prices?tokens=0x6421282c7f14670d738f4651311c5a1286e46484&chain=bsc&api_key=wkI2Pd5mbAWe8n3I3B6C`);
-    //if(priceAPI){price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];}else{price='0.10'}
-    //let price= priceAPI.data.data['0x6421282c7f14670d738f4651311c5a1286e46484'];
-    let price='0.10'
-    res.render('index', { price: price, refVal:refVal })})
+    const priceAPI = await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TMAC', { headers: { 'X-CMC_PRO_API_KEY': process.env.CMC_KEY, },});
+    let tmacPrice = (priceAPI.data.data.TMAC.quote.USD.price).toFixed(6);
+    let price = tmacPrice ? tmacPrice : '0.10';
+    res.render('index', { price: price, refVal:refVal })
+})
 //router.get('/farming', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};res.render('farming',{refVal:refVal})})
 //router.get('/staking', async (req, res) => {if(req.cookies.tmacRef){refVal=req.cookies.tmacRef}else{refVal=''};res.render('staking',{refVal:refVal})})
 router.get('/faq', async (req, res) => {res.render('faq')})

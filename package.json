@@ -13,6 +13,7 @@
     "axios": "^0.24.0",
     "breej": "^1.1.1",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "wallet-validator": "^0.3.9"
