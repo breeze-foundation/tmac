@@ -334,7 +334,9 @@
 
                 //user reward
                 var reward = await stakingContractInstance.methods.earned(selectedAccount).call();
-                user_earn = parseFloat(reward / BigInt(1e6));
+                console.log(reward)
+                user_earn = parseFloat(reward);
+                console.log(user_earn)
                 //user_earn = reward;
                 //console.log(user_earn)
                 if (user_earn > 0) {
@@ -439,7 +441,7 @@
         $('.unstk_mod_btn').html('UNStaking...'); $('.unstk_mod_txt').attr("disabled", true);
         var result = await stakingContractInstance.methods.withdraw(unstk_amt_val).send({
             from: selectedAccount,
-            to: tmac_contract_address,
+            to: staking_contract,
             gasPrice: 10000000000,
             gasLimit: 1000000,
             //value : 0,       
@@ -458,7 +460,7 @@
     $('.wid_btn').click(async function () {
         var result = await stakingContractInstance.methods.getReward().send({
             from: selectedAccount,
-            to: tmac_contract_address,
+            to: staking_contract,
             gasPrice: 10000000000,
             gasLimit: 1000000,
             //value : 0,       
