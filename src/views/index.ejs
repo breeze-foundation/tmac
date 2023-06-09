@@ -334,10 +334,10 @@
 
                 //user reward
                 var reward = await stakingContractInstance.methods.earned(selectedAccount).call();
-                console.log(reward)
-                user_earn = parseFloat(reward);
-                console.log(user_earn)
-                //user_earn = reward;
+                //console.log(reward / 1000000)
+                user_earn_reward = parseFloat(BigInt(reward));
+                //console.log(user_earn_reward / 1000000)
+                user_earn = user_earn_reward / 1000000;
                 //console.log(user_earn)
                 if (user_earn > 0) {
                     $('.user_earnings').val(user_earn);
