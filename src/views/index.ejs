@@ -302,13 +302,16 @@
         const stakeContract = new web3.eth.Contract(staking_ABI, staking_contract);
         const tmacContract = new web3.eth.Contract(tmac_ABI, tmac_contract_address);
         var maxSupply = await tmacContract.methods.totalSupply().call();
-        maxSupply = parseFloat(maxSupply / 1e6);
+        maxSupply = parseFloat(BigInt(maxSupply) / BigInt(1e6)); 
         //var totalSupply = await stakeContract.methods.totalSupply().call();
         var totalStaked = await tokenContractInstance.methods.balanceOf(staking_contract).call();
-        totalSupply = parseFloat(totalStaked / 1e6).toFixed(4); $('.tot_staked').html(totalSupply);
+        totalSupply = parseFloat(totalStaked / BigInt(1e6)) //.toFixed(4); 
+        //totalSupply = parseFloat(totalStaked).toFixed(4); 
+        $('.tot_staked').html(totalSupply);
         var tmac_price = $('.tmac_price').html();
         var locked_val = parseFloat(totalSupply * tmac_price).toFixed(2); $('.tot_lock').html(locked_val);
-        var marketCap = maxSupply * tmac_price; $('.market_cap').html(formatCash(marketCap));
+        var marketCap = maxSupply * tmac_price; 
+        $('.market_cap').html(formatCash(marketCap));
     }
     updateData()
     setInterval(async () => {updateData()}, 3000)
@@ -319,18 +322,20 @@
 
                 //user available balance for staking
                 var user_lp_balance = await tokenContractInstance.methods.balanceOf(selectedAccount).call();
-                user_lp_balance = user_lp_balance / 1e6;
+                user_lp_balance = user_lp_balance / BigInt(1e6);
+
                 if (user_lp_balance > 0) { $('.user_lp_bal').html(user_lp_balance); }
 
                 
                 var staked = await stakingContractInstance.methods.balanceOf(selectedAccount).call();
-                user_stake = parseFloat(staked / 1e6)
+                user_stake = parseFloat(staked / BigInt(1e6))
+                //user_stake = staked
                 $('.user_stk_staking').val(user_stake); $('.user_stk_bal').html(user_stake);
 
                 //user reward
                 var reward = await stakingContractInstance.methods.earned(selectedAccount).call();
-                user_earn = parseFloat(reward / 1e6);
-
+                user_earn = parseFloat(reward / BigInt(1e6));
+                //user_earn = reward;
                 //console.log(user_earn)
                 if (user_earn > 0) {
                     $('.user_earnings').val(user_earn);
@@ -346,7 +351,7 @@
 
                 //available pool reward
                 var polSupply = await stakingContractInstance.methods.polSupply().call();
-                polSupply = parseFloat(polSupply / 1e6);
+                polSupply = parseFloat(polSupply / BigInt(1e6));
                 $('.pol_supply').html(polSupply);
 
                 // start putting data in UI
