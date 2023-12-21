@@ -303,11 +303,11 @@
         const tmacContract = new web3.eth.Contract(tmac_ABI, tmac_contract_address);
         var maxSupply = await tmacContract.methods.totalSupply().call();
         maxSupply = parseFloat(BigInt(maxSupply) / BigInt(1e6)); 
-        //var totalSupply = await stakeContract.methods.totalSupply().call();
-        var totalStaked = await tokenContractInstance.methods.balanceOf(staking_contract).call();
-        totalSupply = parseFloat(totalStaked / BigInt(1e6)) //.toFixed(4); 
+        var totalSupply = await stakeContract.methods.totalSupply().call();
+        //var totalStaked = await tokenContractInstance.methods.balanceOf(staking_contract).call();
+        //totalSupply = parseFloat(totalStaked / BigInt(1e6)) //.toFixed(4); 
         //totalSupply = parseFloat(totalStaked).toFixed(4); 
-        $('.tot_staked').html(totalSupply);
+        $('.tot_staked').html(totalSupply / BigInt(1e6));
         var tmac_price = $('.tmac_price').html();
         var locked_val = parseFloat(totalSupply * tmac_price).toFixed(2); $('.tot_lock').html(locked_val);
         var marketCap = maxSupply * tmac_price; 
