@@ -309,9 +309,11 @@
         //totalSupply = parseFloat(totalStaked).toFixed(4); 
         $('.tot_staked').html(totalSupply / BigInt(1e6));
         var tmac_price = $('.tmac_price').html();
-        var locked_val = parseFloat(totalSupply * tmac_price).toFixed(2); $('.tot_lock').html(locked_val);
         var marketCap = maxSupply * tmac_price; 
         $('.market_cap').html(formatCash(marketCap));
+        totalStaked = parseFloat(totalSupply / BigInt(1e6))
+        var locked_val = parseFloat(totalStaked * tmac_price).toFixed(2); 
+        $('.tot_lock').html(locked_val);
     }
     updateData()
     setInterval(async () => {updateData()}, 3000)
